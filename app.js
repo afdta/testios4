@@ -23,7 +23,7 @@ window.onerror = function(messageOrEvent, source, lineno, colno, error) {
 
  
 (function () {
-
+"use strict";
 //v1.0 developed for congressional district poverty
 
 //All data for each build/view must be tightly coupled.
