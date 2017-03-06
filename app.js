@@ -16,6 +16,8 @@ window.onerror = function(messageOrEvent, source, lineno, colno, error) {
 	s = s + JSON.stringify(messageOrEvent) + "  \n" + source + " \nline:" + lineno + " " + colno + " \n" + error;
 	alert(s);
 }
+
+a=z;
  
 (function () {
 'use strict';
