@@ -18,7 +18,7 @@ Pi.prototype.transition=Qy;var Ky=[null],tg=function(t,n){var e,r,i=t.__transiti
 window.onerror = function(messageOrEvent) {
 	var s = "";
 	s = s + JSON.stringify(messageOrEvent);// + "  \n" + source + " \nline:" + lineno + " " + colno + " \n" + error;
-	console.log(s);
+	console.log(messageOrEvent);
 }
 
  
