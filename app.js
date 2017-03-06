@@ -25,7 +25,6 @@ window.onerror = function(messageOrEvent) {
 a=z;
  
 (function () {
-'use strict';
 
 //v1.0 developed for congressional district poverty
 
@@ -2476,7 +2475,7 @@ function definitions(container, showonly){
 						});
 
 					}
-		
+
 		try{
 			var wrap = d3.select(state.wrap)
 						 .style("margin","0em 0em 4em 0em")
