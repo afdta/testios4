@@ -2439,6 +2439,44 @@ function definitions(container, showonly){
 
 	state.build = function(container){
 		if(!!container){state.wrap = container;}
+
+		function sync(d,i){
+						buttons.style("background-color", function(e,j){
+							return i===j ? colors.highlight : colors.button;
+						});
+
+						buttontext.style("color", function(e, j){
+							return i===j ? "#ffffff" : "#ffffff";
+						}).style("font-size","1.15em");
+
+						var titles = titlebox.selectAll("p").data([state.defs[d].title, state.defs[d].overall]);
+						titles.enter().append("p").merge(titles).text(function(d,i){
+							return d;
+						}).style("font-weight",function(d,i){return i==0 ? "bold" : "normal"})
+						.style("font-size","1em")
+						.style("margin","1em")
+						;
+						
+						var defboxes = contentbox.selectAll("div").data(state.defs[d].indicators);
+
+						var defs = defboxes.enter().append("div")
+											.merge(defboxes)
+											.selectAll("p").data(function(d,i){
+												return [d.title, d.definition, d.source]
+											});
+						defs.enter().append("p").merge(defs)
+						.style("font-weight", function(d,i){
+							return i===0 ? "bold" : "normal";
+						})
+						.style("margin","0em 0em 0.5em 0em")
+						.classed("", function(d,i){return i===0})
+						.classed("source-text", function(d,i){return i===2})
+						.text(function(d,i){
+							return i===2 ? "Source: " + d : d 
+						});
+
+					}
+		
 		try{
 			var wrap = d3.select(state.wrap)
 						 .style("margin","0em 0em 4em 0em")
@@ -2481,42 +2519,7 @@ function definitions(container, showonly){
 											.style("margin","1em 0em 1em 0em")
 											.append("div")
 											.classed("c-fix row-of three-cells",true);
-			function sync(d,i){
-				buttons.style("background-color", function(e,j){
-					return i===j ? colors.highlight : colors.button;
-				});
-
-				buttontext.style("color", function(e, j){
-					return i===j ? "#ffffff" : "#ffffff";
-				}).style("font-size","1.15em");
-
-				var titles = titlebox.selectAll("p").data([state.defs[d].title, state.defs[d].overall]);
-				titles.enter().append("p").merge(titles).text(function(d,i){
-					return d;
-				}).style("font-weight",function(d,i){return i==0 ? "bold" : "normal"})
-				.style("font-size","1em")
-				.style("margin","1em")
-				;
-				
-				var defboxes = contentbox.selectAll("div").data(state.defs[d].indicators);
-
-				var defs = defboxes.enter().append("div")
-									.merge(defboxes)
-									.selectAll("p").data(function(d,i){
-										return [d.title, d.definition, d.source]
-									});
-				defs.enter().append("p").merge(defs)
-				.style("font-weight", function(d,i){
-					return i===0 ? "bold" : "normal";
-				})
-				.style("margin","0em 0em 0.5em 0em")
-				.classed("", function(d,i){return i===0})
-				.classed("source-text", function(d,i){return i===2})
-				.text(function(d,i){
-					return i===2 ? "Source: " + d : d 
-				});
-
-			}
+			
 
 			buttons.on("mousedown", function(d,i){
 				sync(d.key, i);
